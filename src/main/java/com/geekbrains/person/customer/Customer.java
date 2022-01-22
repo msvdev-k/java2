@@ -56,7 +56,7 @@ public class Customer extends Person {
                 seller.getLastName().equals(sellerLastName)) {
 
                 for (Product product: getExpectedPurchaseList()) {
-                    isBoughtAllProducts = isBoughtAllProducts && seller.sellProducts(this, product);
+                    isBoughtAllProducts = seller.sellProducts(this, product) && isBoughtAllProducts;
                 }
 
                 break;
