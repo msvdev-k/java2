@@ -25,20 +25,22 @@ public class Main {
         market.addSeller(secondSeller);
 
         Customer customer = createFirstCustomer();
-        customer.findProductOnMarket(market);
+        customer.findProductOnMarket(market, "Алексей", "Ушаков");
+//        customer.findProductOnMarket(market, "Виталий", "Еремин");
+//        customer.findProductOnMarket(market);
         customer.info();
     }
 
     private static Customer createFirstCustomer() {
         Product firstProduct = new Product();
         firstProduct.setName(MarketConstants.TOMATOES_PRODUCT_NAME);
-        firstProduct.setQuantity(3);
+        firstProduct.setQuantity(10);
 
         Product secondProduct = new Product();
         secondProduct.setName(MarketConstants.CUCUMBER_PRODUCT_NAME);
-        secondProduct.setQuantity(2);
+        secondProduct.setQuantity(10);
 
-        return new Customer(List.of(firstProduct, secondProduct), 50);
+        return new Customer(List.of(firstProduct, secondProduct), 1000);
     }
 
     private static Seller createFirstSeller() {

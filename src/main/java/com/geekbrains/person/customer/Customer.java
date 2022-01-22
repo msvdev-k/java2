@@ -37,6 +37,41 @@ public class Customer extends Person {
         }
     }
 
+    /**
+     * Поиск товара по имени и фамилии продавца.
+     *
+     * @param market Экземпляр класса рынка.
+     * @param sellerName Имя продавца.
+     * @param sellerLastName Фамилия продавца.
+     */
+    public void findProductOnMarket(Market market, String sellerName, String sellerLastName) {
+
+        // Индикатор показывающий, что у одного продавца куплены все продукты
+        boolean isBoughtAllProducts = true;
+
+        // Покупаем товары у заданного продавца
+        for (Seller seller: market.getSellers()) {
+
+            if (seller.getName().equals(sellerName) &&
+                seller.getLastName().equals(sellerLastName)) {
+
+                for (Product product: getExpectedPurchaseList()) {
+                    isBoughtAllProducts = isBoughtAllProducts && seller.sellProducts(this, product);
+                }
+
+                break;
+            }
+        }
+
+        // Если какие-либо товары не нашлись, то ищем их по всему рынку
+        if (isBoughtAllProducts) {
+            System.out.println("Все товары куплены у " + sellerName + " " + sellerLastName);
+        }
+        else {
+            findProductOnMarket(market);
+        }
+    }
+
     public void info() {
         StringBuilder result = new StringBuilder("Я купил ");
         if (purchaseList.size() == 0) {

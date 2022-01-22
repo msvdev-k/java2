@@ -8,6 +8,9 @@ import java.util.List;
 public class Market {
     private List<Seller> sellers;
 
+    /**
+     * Список продавцов.
+     */
     public List<Seller> getSellers() {
         return sellers;
     }
