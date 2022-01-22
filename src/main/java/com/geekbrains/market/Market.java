@@ -15,6 +15,27 @@ public class Market {
         return sellers;
     }
 
+
+    /**
+     * Найти продавца по имени и фамилии.
+     * @param sellerName Имя продавца.
+     * @param sellerLastName Фамилия продавца.
+     * @return
+     */
+    public Seller findSeller(String sellerName, String sellerLastName) {
+
+        for (Seller seller: sellers) {
+
+            if (seller.getName().equals(sellerName) &&
+                seller.getLastName().equals(sellerLastName)) {
+
+                return seller;
+            }
+        }
+        return null;
+    }
+
+
     public void setSellers(List<Seller> sellers) {
         this.sellers = sellers;
     }

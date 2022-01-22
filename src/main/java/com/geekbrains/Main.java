@@ -25,9 +25,9 @@ public class Main {
         market.addSeller(secondSeller);
 
         Customer customer = createFirstCustomer();
+        customer.findProductOnMarket(market, "Виталий", "Еремин");
         customer.findProductOnMarket(market, "Алексей", "Ушаков");
-//        customer.findProductOnMarket(market, "Виталий", "Еремин");
-//        customer.findProductOnMarket(market);
+        customer.findProductOnMarket(market);
         customer.info();
     }
 

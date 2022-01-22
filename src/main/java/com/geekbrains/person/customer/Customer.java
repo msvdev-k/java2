@@ -27,14 +27,30 @@ public class Customer extends Person {
     }
 
     public void findProductOnMarket(Market market) {
+
+        // Список не купленных товаров
+        List<Product> unpurchasedProducts = new ArrayList<>();
+
         for (Product product : getExpectedPurchaseList()) {
+
+            boolean isBought = false;
+
+            // Ищем товар по всем продавцам на рынке
             for (Seller seller : market.getSellers()) {
-                boolean isBought = seller.sellProducts(this, product);
+                isBought = seller.sellProducts(this, product);
                 if (isBought) {
                     break;
                 }
             }
+
+            // Если товар не приобретён, то заносим его в список
+            if (!isBought) {
+                unpurchasedProducts.add(product);
+            }
         }
+
+        // В списке желаемых товаров оставляем только те, которые не удалось купить
+        expectedPurchaseList = unpurchasedProducts;
     }
 
     /**
@@ -46,31 +62,30 @@ public class Customer extends Person {
      */
     public void findProductOnMarket(Market market, String sellerName, String sellerLastName) {
 
-        // Индикатор показывающий, что у одного продавца куплены все продукты
-        boolean isBoughtAllProducts = true;
+        // Список не купленных товаров
+        List<Product> unpurchasedProducts = new ArrayList<>();
 
         // Покупаем товары у заданного продавца
-        for (Seller seller: market.getSellers()) {
+        Seller seller = market.findSeller(sellerName, sellerLastName);
 
-            if (seller.getName().equals(sellerName) &&
-                seller.getLastName().equals(sellerLastName)) {
+        if (seller != null) {
+            for (Product product: getExpectedPurchaseList()) {
 
-                for (Product product: getExpectedPurchaseList()) {
-                    isBoughtAllProducts = seller.sellProducts(this, product) && isBoughtAllProducts;
+                boolean isBought = seller.sellProducts(this, product);
+
+                // Если товар не приобретён, то заносим его в список
+                if (!isBought) {
+                    unpurchasedProducts.add(product);
                 }
-
-                break;
             }
+            // В списке желаемых товаров оставляем только те, которые не удалось купить
+            expectedPurchaseList = unpurchasedProducts;
         }
 
-        // Если какие-либо товары не нашлись, то ищем их по всему рынку
-        if (isBoughtAllProducts) {
-            System.out.println("Все товары куплены у " + sellerName + " " + sellerLastName);
-        }
-        else {
-            findProductOnMarket(market);
-        }
+        // Если в списке покупок остались товары, идём на рынок
+        findProductOnMarket(market);
     }
+
 
     public void info() {
         StringBuilder result = new StringBuilder("Я купил ");
