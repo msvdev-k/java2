@@ -5,6 +5,21 @@ public class Product {
     private int price;
     private int quantity;
 
+    /**
+     * Копирование объекта.
+     * @return Точная копия текущего объекта
+     */
+    @Override
+    public Product clone() {
+        Product product = new Product();
+
+        product.name = name;
+        product.price = price;
+        product.quantity = quantity;
+
+        return product;
+    }
+
     public String getName() {
         return name;
     }
