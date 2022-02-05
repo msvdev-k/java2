@@ -9,11 +9,20 @@ public class OwnLinkedListMain {
         integerOwnLinkedList.addNode(789);
         integerOwnLinkedList.addNode(222);
         integerOwnLinkedList.addNode(345);
-
         integerOwnLinkedList.display();
-        integerOwnLinkedList.display(0);
 
-        Integer[] arr = {150, 347, 111};
-        System.out.println(arr[1]);
+        integerOwnLinkedList.addNode(0, 11111);
+        integerOwnLinkedList.display();
+
+//        integerOwnLinkedList.addNode(8, 11111); // <--- Exception
+
+        integerOwnLinkedList.addNode(7, 11111);
+        integerOwnLinkedList.display();
+
+        integerOwnLinkedList.addNode(3, 44444);
+        integerOwnLinkedList.display();
+
+
     }
+
 }
