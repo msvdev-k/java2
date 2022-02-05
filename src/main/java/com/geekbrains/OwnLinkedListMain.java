@@ -16,11 +16,33 @@ public class OwnLinkedListMain {
 
 //        integerOwnLinkedList.addNode(8, 11111); // <--- Exception
 
-        integerOwnLinkedList.addNode(7, 11111);
+        integerOwnLinkedList.addNode(7, 55555);
         integerOwnLinkedList.display();
 
         integerOwnLinkedList.addNode(3, 44444);
         integerOwnLinkedList.display();
+
+
+//        integerOwnLinkedList.remove(9); // <--- Exception
+
+        int removedNode = integerOwnLinkedList.remove(0);
+        System.out.println("Удалённый элемент:" + removedNode);
+        integerOwnLinkedList.display();
+
+        removedNode = integerOwnLinkedList.remove(2);
+        System.out.println("Удалённый элемент:" + removedNode);
+        integerOwnLinkedList.display();
+
+        removedNode = integerOwnLinkedList.remove(6);
+        System.out.println("Удалённый элемент:" + removedNode);
+        integerOwnLinkedList.display();
+
+
+        for (int i = 0 ; i < 6; i++) {
+            removedNode = integerOwnLinkedList.remove(0);
+            System.out.println("Удалённый элемент:" + removedNode);
+            integerOwnLinkedList.display();
+        }
 
 
     }

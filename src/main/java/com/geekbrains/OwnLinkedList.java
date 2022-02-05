@@ -66,6 +66,54 @@ public class OwnLinkedList<T> {
     }
 
 
+    /**
+     * Удалить элемент из списка.
+     * @param index индекс позиции удаляемого элемента.
+     * @return удалённый из списка элемент.
+     */
+    public T remove(int index) {
+
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException();
+        }
+
+        Node removedNode;
+
+        if (index == 0) {
+            removedNode = head;
+            head = head.next;
+        }
+        else {
+            // Начальный элемент
+            Node current = head;
+
+            // Поиск index - 1 элемента
+            for (int i = 1; i < index; i++) {
+                current = current.next;
+            }
+
+            // Удаление элемента с позиции index
+            removedNode = current.next;
+
+            if (tail == removedNode) {
+                // Элемент удаляется из конца списка
+                current.next = null;
+                tail = current;
+            }
+            else {
+                // Элемент удаляется из середины списка
+                current.next = removedNode.next;
+            }
+        }
+
+        // Уменьшение количества элементов
+        size--;
+
+        return removedNode.data;
+    }
+
+
+
     public void display() {
         Node current = head;
 
